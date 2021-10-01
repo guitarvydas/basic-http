@@ -3,14 +3,16 @@ const https = require ('https');
 const host = 'localhost';
 const port = 8000;
 
+var postData = "hello";
+
 let options = {
     host: 'localhost',
     port: 8000,
-    //path: '/authors',
     method: 'POST',
     header: {
 	'Accept': 'application/json',
-	'Content-Type': 'application/json; charset=UTF-8'
+	'Content-Type': 'application/json; charset=UTF-8',
+	'Content-Length' : postData.length
     }
 };
 
@@ -39,6 +41,7 @@ let request = http.request (options, (res) => {
     
 });
 
+request.write (postData);
 request.end ();
 
 request.on ('error', (err) => {

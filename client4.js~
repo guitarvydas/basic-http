@@ -1,0 +1,13 @@
+let https = require("https");
+
+let post = https.request({
+  host: "server.com",
+  path: "/path",
+  method: "POST"
+}, res => {
+  res.on("data", chunk => {
+    console.log("Response: " + chunk);
+  };
+});
+post.write("string_to_send");
+post.end();

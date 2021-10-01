@@ -16,6 +16,13 @@ const authors = JSON.stringify([
 ]);
 
 const requestListener = function (req, res) {
+    var data = '';
+    req.on('data', chunk => {
+	data += chunk;
+    });
+    req.on('end', () => {
+	console.log ("data is: " + data);
+    });
     res.setHeader ("Content-Type", "application/json");
     if (req.url === "/authors") {
 	console.log ("routes: authors");
