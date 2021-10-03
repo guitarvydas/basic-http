@@ -1,7 +1,7 @@
 let http = require("http");
 
 async function req () {
-    var result = "def";
+    var data = '';
     function inner () {
 	let post = http.request({
 	    host: 'localhost',
@@ -11,17 +11,18 @@ async function req () {
 	}, res => {
 	    res.on("data", chunk => {
 		console.log("data: " + chunk);
-		result = chunk;
-		return result;
+		data += chunk;
 	    });
 	    res.on("close", finaldata => {
-		console.log("close: " + finaldata);
-		result = finaldata;
+		console.log("close 1: " + finaldata);
+		console.log("close 2: " + data);
+		result = data;
 		return result;
 	    })
 	});
 	post.write("string_to_send");
 	post.end();
+	return "ghi";
     };
     var i = await inner ();
     return i;
