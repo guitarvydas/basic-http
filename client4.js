@@ -10,8 +10,13 @@ async function req () {
 	    method: "POST"
 	}, res => {
 	    res.on("data", chunk => {
-		console.log("Response: " + chunk);
+		console.log("data: " + chunk);
 		result = chunk;
+		return result;
+	    });
+	    res.on("close", finaldata => {
+		console.log("close: " + finaldata);
+		result = finaldata;
 		return result;
 	    })
 	});
