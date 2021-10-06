@@ -3,13 +3,14 @@ function timer () {
 }
 
 
-(async () => { 
+async function atimer () { 
     var p = timer ();
     console.log ('begin await'); 
     console.log (p);
     await p; 
     console.log (p);
     console.log ('end await'); 
-})();
+}
 
+atimer ();
 console.log ('done');
