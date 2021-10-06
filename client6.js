@@ -5,7 +5,7 @@ const options = { method: 'POST'
 
 var data = '';
 
-function sendReq () {
+function sendReq (received) {
     let request = http.request ('http://localhost:8000/authors',
 				options,
 				(res) => {
@@ -21,6 +21,7 @@ function sendReq () {
 				    res.on('close', () => {
 					console.log('Retrieved all data'); 
 					console.log(JSON.parse(data));
+					received (data);
 				    });
 				    
 				    request.on('error', (err) => {
@@ -31,6 +32,10 @@ function sendReq () {
     request.end ();
 }
 
-sendReq ();
+function received (s) {
+    console.log ('received: /' + s + '/');
+}
 
-console.log ("received: /" + data + "/");
+sendReq (received);
+
+console.log ("sendReq returned: /" + data + "/");
