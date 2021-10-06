@@ -26,11 +26,11 @@ const requestListener = function (req, res) {
     res.setHeader ("Content-Type", "application/json");
     if (req.url === "/authors") {
 	console.log ("routes: authors");
-	res.writeHead (200);
+	res.writeHead (201);
 	res.end (authors);
     } else if (req.url === "/books") {
 	console.log ("routes: books");
-	res.writeHead (200);
+	res.writeHead (201);
 	res.end (Date ().toString());
     } else {
 	console.log ("routes: error");
