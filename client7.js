@@ -19,8 +19,6 @@ function sendReq (fn_OK) {
 					data += chunk;
 				    });
 				    res.on('close', () => {
-					console.log('Retrieved all data'); 
-					console.log(JSON.parse(data));
 					return fn_OK (data);
 				    });
 				    
@@ -40,16 +38,9 @@ function httpReq () {
 
 async function areq () { 
     var p = httpReq ();
-    console.log ('begin await'); 
-    console.log (p);
     var returneddata = await p; 
-    console.log (p);
-    console.log ('end await');
     return returneddata;
 }
 
 var r = areq ();
-console.log ('done');
-console.log (r);
-(async () => { console.log (await r); })();
 (async () => { console.log (await r); })();
