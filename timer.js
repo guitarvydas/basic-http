@@ -2,9 +2,9 @@ function timer () {
     return new Promise (fn_resolve => setTimeout (fn_resolve, 1000));
 }
 
-var p = timer ();
 
 (async () => { 
+    var p = timer ();
     console.log ('begin await'); 
     console.log (p);
     await p; 
