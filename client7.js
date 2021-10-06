@@ -31,13 +31,9 @@ function sendReq (fn_OK) {
     request.end ();
 }
 
-function httpReq () {
-    return new Promise (fn_resolve => sendReq (fn_resolve));
-}
-
 
 async function areq () { 
-    var p = httpReq ();
+    var p = (() => new Promise (fn_resolve => sendReq (fn_resolve))) ();
     var returneddata = await p; 
     return returneddata;
 }
